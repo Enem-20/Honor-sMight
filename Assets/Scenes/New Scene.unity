@@ -361,6 +361,8 @@ GameObject:
   - component: {fileID: 1020557574}
   - component: {fileID: 1020557573}
   - component: {fileID: 1020557572}
+  - component: {fileID: 1020557576}
+  - component: {fileID: 1020557575}
   m_Layer: 0
   m_Name: OrcProtectorObject
   m_TagString: Untagged
@@ -442,6 +444,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020557570}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!195 &1020557575
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020557570}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1020557576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020557570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af53d7159d045a04a968589b6b86e8b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
 --- !u!1 &1102047463
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,6 +622,7 @@ GameObject:
   - component: {fileID: 1236201055}
   - component: {fileID: 1236201054}
   - component: {fileID: 1236201057}
+  - component: {fileID: 1236201058}
   m_Layer: 0
   m_Name: LightInfantryObject
   m_TagString: Untagged
@@ -679,6 +717,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad21bd85b757c8448bba194829914cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
+--- !u!195 &1236201058
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236201052}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1298744463
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +753,7 @@ GameObject:
   - component: {fileID: 1298744466}
   - component: {fileID: 1298744465}
   - component: {fileID: 1298744468}
+  - component: {fileID: 1298744469}
   m_Layer: 0
   m_Name: AvantGardeObject
   m_TagString: Untagged
@@ -785,6 +847,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab76fe0adb9a004e9c34fa7aaa56348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
+--- !u!195 &1298744469
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1298744463}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1387080589
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1140,8 @@ GameObject:
   - component: {fileID: 1804758641}
   - component: {fileID: 1804758640}
   - component: {fileID: 1804758639}
+  - component: {fileID: 1804758643}
+  - component: {fileID: 1804758642}
   m_Layer: 0
   m_Name: OrcOfStoneObject
   m_TagString: Untagged
@@ -1137,6 +1224,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804758637}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!195 &1804758642
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804758637}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1804758643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1804758637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8adafff8354975d4685fca3fd2371262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
 --- !u!1 &1820300885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,6 +1271,8 @@ GameObject:
   - component: {fileID: 1820300889}
   - component: {fileID: 1820300888}
   - component: {fileID: 1820300887}
+  - component: {fileID: 1820300891}
+  - component: {fileID: 1820300890}
   m_Layer: 0
   m_Name: OrcDwarfObject
   m_TagString: Untagged
@@ -1231,6 +1355,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820300885}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!195 &1820300890
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820300885}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5000001
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1820300891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820300885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1827ae9b13053b4ea4aa82897b530a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
 --- !u!1 &1926960601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1525,8 @@ GameObject:
   - component: {fileID: 1929874132}
   - component: {fileID: 1929874131}
   - component: {fileID: 1929874130}
+  - component: {fileID: 1929874134}
+  - component: {fileID: 1929874133}
   m_Layer: 0
   m_Name: OrcChampionObject
   m_TagString: Untagged
@@ -1447,6 +1608,41 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929874128}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!195 &1929874133
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929874128}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1929874134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1929874128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e98d5141c3b9a4383ea577bf450788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
 --- !u!1 &1952393714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1656,7 @@ GameObject:
   - component: {fileID: 1952393717}
   - component: {fileID: 1952393716}
   - component: {fileID: 1952393719}
+  - component: {fileID: 1952393720}
   m_Layer: 0
   m_Name: SpearmanObject
   m_TagString: Untagged
@@ -1554,3 +1751,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d00b42576f3f1499ea82061f38f1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 113120329}
+--- !u!195 &1952393720
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952393714}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5000001
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

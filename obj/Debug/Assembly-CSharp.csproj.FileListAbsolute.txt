@@ -586,6 +586,3 @@ D:\Unity\Honor-sMight\Temp\bin\Debug\UnityEditor.UI.pdb
 D:\Unity\Honor-sMight\Temp\bin\Debug\UnityEditor.TestRunner.pdb
 D:\Unity\Honor-sMight\Temp\bin\Debug\UnityEngine.TestRunner.pdb
 D:\Unity\Honor-sMight\obj\Debug\Assembly-CSharp.csproj.CopyComplete
-D:\Unity\Honor-sMight\Temp\bin\Debug\nunit.framework.dll
-D:\Unity\Honor-sMight\Temp\bin\Debug\nunit.framework.pdb
-D:\Unity\Honor-sMight\Temp\bin\Debug\nunit.framework.xml

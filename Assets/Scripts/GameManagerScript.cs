@@ -123,6 +123,105 @@ public class SpearmanPriority : PriorityStategy
     }
 }
 
+
+public class OrcProtectorPriority : PriorityStategy
+{
+    override public Vector3 getNextTarget(GameManagerScript gameManager, Vector3 currentPositon)
+    {
+        if (gameManager.HeavyInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.HeavyInfantryObjectsList);
+        }
+        else if (gameManager.AvantGardeObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.AvantGardeObjectsList);
+        }
+        else if (gameManager.SpearmanObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.SpearmanObjectsList);
+        }
+        else if (gameManager.LightInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
+        }
+        return currentPositon;
+    }
+}
+
+
+public class OrcChampionPriority : PriorityStategy
+{
+    override public Vector3 getNextTarget(GameManagerScript gameManager, Vector3 currentPositon)
+    {
+        if (gameManager.AvantGardeObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.AvantGardeObjectsList);
+        }
+        else if (gameManager.HeavyInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.HeavyInfantryObjectsList);
+        }
+        else if (gameManager.LightInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
+        }
+        else if (gameManager.SpearmanObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.SpearmanObjectsList);
+        }
+        return currentPositon;
+    }
+}
+
+
+public class OrcOfStoneHandPriority : PriorityStategy
+{
+    override public Vector3 getNextTarget(GameManagerScript gameManager, Vector3 currentPositon)
+    {
+        if (gameManager.LightInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
+        }
+        else if (gameManager.SpearmanObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.SpearmanObjectsList);
+        }
+        else if (gameManager.AvantGardeObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.AvantGardeObjectsList);
+        }
+        else if (gameManager.HeavyInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.HeavyInfantryObjectsList);
+        }
+        return currentPositon;
+    }
+}
+
+public class OrcDwarfPriority : PriorityStategy
+{
+    override public Vector3 getNextTarget(GameManagerScript gameManager, Vector3 currentPositon)
+    {
+        if (gameManager.HeavyInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.HeavyInfantryObjectsList);
+        }
+        else if (gameManager.AvantGardeObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.AvantGardeObjectsList);
+        }
+        else if (gameManager.SpearmanObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.SpearmanObjectsList);
+        }
+        else if (gameManager.LightInfantryObjectsList.Count != 0)
+        {
+            return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
+        }
+        return currentPositon;
+    }
+}
+
 public class GameManagerScript : MonoBehaviour
 {
     // Humans
