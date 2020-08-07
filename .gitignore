@@ -1,3 +1,10 @@
 /Library/
 /Packages/
 /Logs/
+/Temp/
+/.vs/
+/LocalPackages/
+/obj/
+
+*.csproj
+*.sln
