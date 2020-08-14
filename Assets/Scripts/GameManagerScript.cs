@@ -10,7 +10,7 @@ abstract public class PriorityStategy
     abstract public Vector3 getNextTarget(GameManagerScript gameManager, Vector3 currentPositon);
 
     protected Vector3 GetNearObject(Vector3 position, List<GameObject> list)
-    {
+    { 
         float length2 = 9999;
         Vector3 returnedVector = Vector3.zero;
         foreach (GameObject currentElement in list)
@@ -47,7 +47,7 @@ public class HeavyInfantryPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.OrcOfStoneObjectsList);
         }
-        return currentPositon;
+        return gameManager.Lair.transform.position;
     }
 }
 
@@ -71,7 +71,7 @@ public class AvantGardePriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.OrcDwarfObjectsList);
         }
-        return currentPositon;
+        return gameManager.Lair.transform.position;
     }
 }
 
@@ -95,7 +95,7 @@ public class LightInfantryPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.OrcProtectorObjectsList);
         }
-        return currentPositon;
+        return gameManager.Lair.transform.position;
     }
 }
 
@@ -119,7 +119,7 @@ public class SpearmanPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.OrcDwarfObjectsList);
         }
-        return currentPositon;
+        return gameManager.Lair.transform.position;
     }
 }
 
@@ -144,7 +144,7 @@ public class OrcProtectorPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
         }
-        return currentPositon;
+        return gameManager.Castle.transform.position;
     }
 }
 
@@ -169,7 +169,7 @@ public class OrcChampionPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.SpearmanObjectsList);
         }
-        return currentPositon;
+        return gameManager.Castle.transform.position;
     }
 }
 
@@ -194,7 +194,7 @@ public class OrcOfStoneHandPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.HeavyInfantryObjectsList);
         }
-        return currentPositon;
+        return gameManager.Castle.transform.position;
     }
 }
 
@@ -218,7 +218,7 @@ public class OrcDwarfPriority : PriorityStategy
         {
             return GetNearObject(currentPositon, gameManager.LightInfantryObjectsList);
         }
-        return currentPositon;
+        return gameManager.Castle.transform.position;
     }
 }
 
@@ -239,6 +239,9 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] Transform HumansSpawn;
     [SerializeField] Transform OrcsSpawn;
 
+    public GameObject Castle;
+    public GameObject Lair;
+
     public List<GameObject> HeavyInfantryObjectsList;
     public List<GameObject> AvantGardeObjectsList;
     public List<GameObject> LightInfantryObjectsList;
@@ -251,49 +254,9 @@ public class GameManagerScript : MonoBehaviour
 
     GameObject obj;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            HeavyInfantryObjectsList.Add(Instantiate(HeavyInfantryObject, HumansSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            AvantGardeObjectsList.Add(Instantiate(AvantGardeObject, HumansSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            LightInfantryObjectsList.Add(Instantiate(LightInfantryObject, HumansSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            SpearmanObjectsList.Add(Instantiate(SpearmanObject, HumansSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-
-
-
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            OrcProtectorObjectsList.Add(Instantiate(OrcProtectorObject, OrcsSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            OrcChampionObjectsList.Add(Instantiate(OrcChampionObject, OrcsSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            OrcOfStoneObjectsList.Add(Instantiate(OrcOfStoneObject, OrcsSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            OrcDwarfObjectsList.Add(Instantiate(OrcDwarfObject, OrcsSpawn.transform.position, Quaternion.identity) as GameObject);
-        }
+        Lair = GameObject.Find("DamageOrcs");
+        Castle = GameObject.Find("DamageHumans");
     }
 }

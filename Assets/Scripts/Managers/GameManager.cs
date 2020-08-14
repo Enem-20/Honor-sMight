@@ -70,8 +70,7 @@ public class GameManager : MonoBehaviour
         {
             CallHumans.Add(UnitHumans.transform.GetChild(i).gameObject);
         }
-        //_HpBarLair = HpBarLair.GetComponent<RectTransform>();
-        //_CastleHpBar = CastleHpBar.GetComponent<RectTransform>();
+
 
     }
     void Start()

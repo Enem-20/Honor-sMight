@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AvantGardeScript : MonoBehaviour
 {
-    [SerializeField] GameManagerScript gameManager;
+    GameManagerScript gameManagerScript;
 
     private NavMeshAgent navMeshAgent;
     private Transform transform;
@@ -15,6 +15,7 @@ public class AvantGardeScript : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         transform = GetComponent<Transform>();
+        gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
     }
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class AvantGardeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navMeshAgent.destination = priorityStrategy.getNextTarget(gameManager, transform.position);
+        navMeshAgent.destination = priorityStrategy.getNextTarget(gameManagerScript, transform.position);
+
     }
 }
