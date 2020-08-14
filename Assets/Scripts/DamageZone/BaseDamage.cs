@@ -10,14 +10,13 @@ public class BaseDamage : MonoBehaviour
     [SerializeField] private RectTransform HpBar;
     [SerializeField] private GameObject HpText;
     private Text _HpText;
-    private Vector2 HpBar_Width;
-    private float Damage;
+    private Vector2 Damage;
 
     private void Awake()
     {
         
         _HpText = HpText.GetComponent<Text>();
-        HpBar_Width = HpBar.sizeDelta;
+        Damage = new Vector2(1, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,18 +45,23 @@ public class BaseDamage : MonoBehaviour
 
     IEnumerator Damager_Humans()
     {
-        
-        HpBar_Width -= new Vector2(Damage, 0);
-        //HpBar.position += new Vector3(HpBar.position.x + Damage, 0, 0);
-        _HpText.text = HpBar_Width.ToString();
-        yield return new WaitForSeconds(500f);
+        while (HpBar.sizeDelta.x > 0)
+        {
+            HpBar.sizeDelta -= Damage;
+            //HpBar.position += new Vector3(HpBar.position.x + Damage, 0, 0);
+            _HpText.text = HpBar.sizeDelta.x.ToString();
+            yield return new WaitForSeconds(1f);
+        }
     }
     IEnumerator Damager_Orcs()
     {
-        Debug.Log("Damaged");
-        HpBar_Width -= new Vector2(Damage, 0);
-        //HpBar.position -= new Vector3(HpBar.position.x + Damage, 0, 0);
-        _HpText.text = HpBar_Width.x.ToString();
-        yield return new WaitForSeconds(500f);
+        while (HpBar.sizeDelta.x > 0)
+        {
+            Debug.Log("Damaged");
+            HpBar.sizeDelta -= Damage;
+            //HpBar.position -= new Vector3(HpBar.position.x + Damage, 0, 0);
+            _HpText.text = HpBar.sizeDelta.x.ToString();
+            yield return new WaitForSeconds(1f);
+        }
     }
 }
