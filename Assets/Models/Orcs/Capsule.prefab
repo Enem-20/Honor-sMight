@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 6715560976159817092}
   - component: {fileID: -87601521659143758}
   - component: {fileID: -9142122542125484457}
-  - component: {fileID: -2628979069499265374}
+  - component: {fileID: -959136514125670498}
+  - component: {fileID: -8515879004081754097}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Orcs
@@ -106,7 +107,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 4095274847722119474}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3.9
+  m_Radius: 0.4
   m_Speed: 10
   m_Acceleration: 5
   avoidancePriority: 50
@@ -116,7 +117,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2.2
-  m_BaseOffset: 0.05
+  m_BaseOffset: 1.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!54 &-9142122542125484457
@@ -135,7 +136,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-2628979069499265374
+--- !u!114 &-959136514125670498
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,7 +145,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4095274847722119474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af53d7159d045a04a968589b6b86e8b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d7a9af115b3dda48ae59f408a19de21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  priorityDeterminate: {fileID: 0}
+--- !u!114 &-8515879004081754097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4095274847722119474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756d0db0e68120349961e10724ddeab0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleDeterminate: {fileID: 0}
