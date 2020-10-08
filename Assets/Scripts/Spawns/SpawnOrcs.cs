@@ -34,7 +34,7 @@ public class SpawnOrcs : MonoBehaviour
 
         inst_Orcs.AddComponent<BattleProtector>();
         inst_Orcs.GetComponent<Battle>().battleDeterminate = inst_Orcs.GetComponent<BattleProtector>();
-        inst_Orcs.GetComponent<Battle>().setUnit(inst_Orcs.GetComponent<Battle>().battleDeterminate);
+        inst_Orcs.GetComponent<Battle>().setUnit(inst_Orcs.GetComponent<Battle>().battleDeterminate, new ParamProtector());
 
         gameManager.GetComponent<GameManagerScript>().OrcProtectorObjectsList.Add(inst_Orcs);
         isOrcs = 0;

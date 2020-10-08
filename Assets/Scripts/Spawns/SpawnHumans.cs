@@ -46,6 +46,10 @@ public class SpawnHumans : MonoBehaviour
         inst_infantry.GetComponent<Priority>().priorityDeterminate = inst_infantry.GetComponent<Heavy>();
         inst_infantry.GetComponent<Priority>().setUnit(inst_infantry.GetComponent<Priority>().priorityDeterminate);
 
+        inst_infantry.AddComponent<BattleHeavy>();
+        inst_infantry.GetComponent<Battle>().battleDeterminate = inst_infantry.GetComponent<BattleHeavy>();
+        inst_infantry.GetComponent<Battle>().setUnit(inst_infantry.GetComponent<Battle>().battleDeterminate, new ParamHeavy());
+
         gameManager.GetComponent<GameManagerScript>().HeavyInfantryObjectsList.Add(inst_infantry);
         isInfantry = 0;
     }
@@ -59,7 +63,7 @@ public class SpawnHumans : MonoBehaviour
 
         inst_infantry.AddComponent<BattleAvantGarde>();
         inst_infantry.GetComponent<Battle>().battleDeterminate = inst_infantry.GetComponent<BattleAvantGarde>();
-        inst_infantry.GetComponent<Battle>().setUnit(inst_infantry.GetComponent<Battle>().battleDeterminate);
+        inst_infantry.GetComponent<Battle>().setUnit(inst_infantry.GetComponent<Battle>().battleDeterminate, new ParamAvant());
 
         gameManager.GetComponent<GameManagerScript>().AvantGardeObjectsList.Add(inst_infantry);
         isInfantry = 1;
@@ -71,6 +75,10 @@ public class SpawnHumans : MonoBehaviour
         inst_infantry.GetComponent<Priority>().priorityDeterminate = inst_infantry.GetComponent<LightInfantry>();
         inst_infantry.GetComponent<Priority>().setUnit(inst_infantry.GetComponent<Priority>().priorityDeterminate);
 
+        inst_infantry.AddComponent<BattleLight>();
+        inst_infantry.GetComponent<Battle>().battleDeterminate = inst_infantry.GetComponent<BattleLight>();
+        inst_infantry.GetComponent<Battle>().setUnit(inst_infantry.GetComponent<Battle>().battleDeterminate, new ParamLight());
+
         gameManager.GetComponent<GameManagerScript>().LightInfantryObjectsList.Add(inst_infantry);
         isInfantry = 2;
     }
@@ -80,6 +88,10 @@ public class SpawnHumans : MonoBehaviour
         inst_infantry.AddComponent<Spearman>();
         inst_infantry.GetComponent<Priority>().priorityDeterminate = inst_infantry.GetComponent<Spearman>();
         inst_infantry.GetComponent<Priority>().setUnit(inst_infantry.GetComponent<Priority>().priorityDeterminate);
+
+        inst_infantry.AddComponent<BattleSpearman>();
+        inst_infantry.GetComponent<Battle>().battleDeterminate = inst_infantry.GetComponent<BattleSpearman>();
+        inst_infantry.GetComponent<Battle>().setUnit(inst_infantry.GetComponent<Battle>().battleDeterminate, new ParamSpear());
 
         gameManager.GetComponent<GameManagerScript>().SpearmanObjectsList.Add(inst_infantry);
         isInfantry = 3;

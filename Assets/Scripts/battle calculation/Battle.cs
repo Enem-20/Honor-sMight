@@ -8,7 +8,7 @@ public class Battle : MonoBehaviour
 
     public BattleContext context;
 
-    public delegate void SetUnit(BattleDeterminate battleDeterminate);
+    public delegate void SetUnit(BattleDeterminate battleDeterminate, CharParam charParam);
 
     public SetUnit setUnit;
 
@@ -17,19 +17,14 @@ public class Battle : MonoBehaviour
         context = new BattleContext();
         setUnit = context.SetUnits;
     }
-
-
-    private void Update()
-    {
-
-    }
 }
 sealed public class BattleContext
 {
-
     BattleDeterminate battleDeterminate;
-    public void SetUnits(BattleDeterminate battle)
+
+    public void SetUnits(BattleDeterminate battle, CharParam charParam)
     {
         this.battleDeterminate = battle;
+        this.battleDeterminate.charParam = charParam;
     }
 }
