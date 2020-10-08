@@ -4,38 +4,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Priority : MonoBehaviour
+namespace NPriority
 {
-    public PriorityDeterminate priorityDeterminate;
-
-    public PriorityContext context;
-
-    public delegate void SetUnit(PriorityDeterminate priorityDeterminate);
-
-    public SetUnit setUnit;
-
-    private void Awake()
+    public class Priority : MonoBehaviour
     {
-        context = new PriorityContext();
-        setUnit = context.SetUnits;
+        public PriorityDeterminate priorityDeterminate;
+
+        public PriorityContext context;
+
+        public delegate void SetUnit(PriorityDeterminate priorityDeterminate);
+
+        public SetUnit setUnit;
+
+        private void Awake()
+        {
+            context = new PriorityContext();
+            setUnit = context.SetUnits;
+        }
+
+
+        private void Update()
+        {
+            context.GoToTarget();
+        }
     }
 
-
-    private void Update()
+    sealed public class PriorityContext
     {
-        context.GoToTarget();
-    }
-}
-
-sealed public class PriorityContext
-{
-    PriorityDeterminate priorityDeterminate;
-    public void GoToTarget()
-    {
-        priorityDeterminate.Go();
-    }
-    public void SetUnits(PriorityDeterminate priority)
-    {
-        this.priorityDeterminate = priority;
+        PriorityDeterminate priorityDeterminate;
+        public void GoToTarget()
+        {
+            priorityDeterminate.Go();
+        }
+        public void SetUnits(PriorityDeterminate priority)
+        {
+            this.priorityDeterminate = priority;
+        }
     }
 }

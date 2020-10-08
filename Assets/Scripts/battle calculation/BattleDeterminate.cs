@@ -3,82 +3,68 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-abstract public class BattleDeterminate : MonoBehaviour
+namespace NBattle
 {
-    protected Rigidbody rigidbody;
-    protected NavMeshAgent navMeshAgent;
-    public CharParam charParam;
-    GameObject enemy;
-
-    private void Awake()
+    abstract public class BattleDeterminate : MonoBehaviour
     {
-        rigidbody = GetComponent<Rigidbody>();
-        navMeshAgent = GetComponent<NavMeshAgent>();
-    }
+        protected Rigidbody rigidbody;
+        protected NavMeshAgent navMeshAgent;
+        public CharParam charParam;
+        GameObject enemy;
 
-    protected bool Blocked()
-    {
-        if (Random.Range(1, 101) > charParam.Block)
+        private void Awake()
         {
-            return Parried();
+            rigidbody = GetComponent<Rigidbody>();
+            navMeshAgent = GetComponent<NavMeshAgent>();
         }
-        else
-        {
-            Debug.Log("Blocked!");
-            return true;
-        }
-    }
 
-    protected bool Parried()
-    {
-        if (Random.Range(1, 101) > charParam.Parry)
+        protected bool Blocked()
         {
-            return Evaded();
-        }
-        else
-        {
-            Debug.Log("Parried!");
-            return true;
-        }
-    }
-    protected bool Evaded()
-    {
-        if (Random.Range(1, 101) > charParam.Evade)
-        {
-            return false;
-        }
-        else
-        {
-            Debug.Log("Evaded!");
-            return true;
-        }
-    }
-
-    protected void Die(GameObject enemy)
-    {
-        this.enemy = enemy;
-        int childs_size = gameObject.transform.childCount - 4;
-        float DieProbably = charParam.DieProbably;
-
-        DieProbably = DieProbably + charParam.armor - enemy.GetComponent<BattleDeterminate>().charParam.weapon;
-
-        if(DieProbably >= 100)
-        {
-            if (childs_size == 1)
+            if (Random.Range(1, 101) > charParam.Block)
             {
-                Debug.Log("Die!" + gameObject);
-                Destroy(gameObject);
+                return Parried();
             }
-            else if(childs_size > 1)
+            else
             {
-                int result = Random.Range(0, childs_size);
-                Debug.Log("Die!" + gameObject.transform.GetChild(result));
-                Destroy(gameObject.transform.GetChild(result).gameObject);
-            }   
+                Debug.Log("Blocked!");
+                return true;
+            }
         }
-        else
+
+        protected bool Parried()
         {
-            if (Random.Range(1, 101) < DieProbably)
+            if (Random.Range(1, 101) > charParam.Parry)
+            {
+                return Evaded();
+            }
+            else
+            {
+                Debug.Log("Parried!");
+                return true;
+            }
+        }
+        protected bool Evaded()
+        {
+            if (Random.Range(1, 101) > charParam.Evade)
+            {
+                return false;
+            }
+            else
+            {
+                Debug.Log("Evaded!");
+                return true;
+            }
+        }
+
+        protected void Die(GameObject enemy)
+        {
+            this.enemy = enemy;
+            int childs_size = gameObject.transform.childCount - 4;
+            float DieProbably = charParam.DieProbably;
+
+            DieProbably = DieProbably + charParam.armor - enemy.GetComponent<BattleDeterminate>().charParam.weapon;
+
+            if (DieProbably >= 100)
             {
                 if (childs_size == 1)
                 {
@@ -92,186 +78,203 @@ abstract public class BattleDeterminate : MonoBehaviour
                     Destroy(gameObject.transform.GetChild(result).gameObject);
                 }
             }
-        }
-        
-    }
-    protected IEnumerator AvoidenceOrDie(GameObject enemy)
-    {
-        Debug.Log("Start skirmish!");
-        while (true)
-        {
-            if (!Blocked())
+            else
             {
-                Die(enemy);
+                if (Random.Range(1, 101) < DieProbably)
+                {
+                    if (childs_size == 1)
+                    {
+                        Debug.Log("Die!" + gameObject);
+                        Destroy(gameObject);
+                    }
+                    else if (childs_size > 1)
+                    {
+                        int result = Random.Range(0, childs_size);
+                        Debug.Log("Die!" + gameObject.transform.GetChild(result));
+                        Destroy(gameObject.transform.GetChild(result).gameObject);
+                    }
+                }
             }
-            yield return new WaitForSeconds(2);
-        }
-    }
-    private void OnDestroy()
-    {
-        enemy.GetComponent<NavMeshAgent>().enabled = true;
-    }
-}
 
-sealed class BattleHeavy : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Orcs")
+        }
+        protected IEnumerator AvoidenceOrDie(GameObject enemy)
         {
-            
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            Debug.Log("Start skirmish!");
+            while (true)
+            {
+                if (!Blocked())
+                {
+                    Die(enemy);
+                }
+                yield return new WaitForSeconds(2);
+            }
+        }
+        private void OnDestroy()
+        {
+            enemy.GetComponent<NavMeshAgent>().enabled = true;
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Orcs")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-            Debug.Log("Exit skirmish!");
-        }
-    }
-}
 
-sealed class BattleAvantGarde : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    sealed class BattleHeavy : BattleDeterminate
     {
-        if (other.tag == "Orcs")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Orcs")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
+            if (other.tag == "Orcs")
+            {
 
-sealed class BattleLight : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Orcs")
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+                Debug.Log("Exit skirmish!");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Orcs")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
 
-public class BattleSpearman : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    sealed class BattleAvantGarde : BattleDeterminate
     {
-        if (other.tag == "Orcs")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Orcs")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
 
-sealed class BattleProtector : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    sealed class BattleLight : BattleDeterminate
     {
-        if (other.tag == "Humans")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            Debug.Log("Protector Avoidence");
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Humans")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
 
-sealed class BattleChampions : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    public class BattleSpearman : BattleDeterminate
     {
-        if (other.tag == "Humans")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Orcs")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Humans")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
 
-sealed class BattleStone : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    sealed class BattleProtector : BattleDeterminate
     {
-        if (other.tag == "Humans")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = false;
+                Debug.Log("Protector Avoidence");
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Humans")
-        {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
-        }
-    }
-}
 
-sealed class BattleDwarf : BattleDeterminate
-{
-    private void OnTriggerEnter(Collider other)
+    sealed class BattleChampions : BattleDeterminate
     {
-        if (other.tag == "Humans")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = false;
-            StartCoroutine("AvoidenceOrDie", other.gameObject);
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    sealed class BattleStone : BattleDeterminate
     {
-        if (other.tag == "Humans")
+        private void OnTriggerEnter(Collider other)
         {
-            navMeshAgent.enabled = true;
-            StopCoroutine("AvoidenceOrDie");
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
+        }
+    }
+
+    sealed class BattleDwarf : BattleDeterminate
+    {
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = false;
+                StartCoroutine("AvoidenceOrDie", other.gameObject);
+            }
+        }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.tag == "Humans")
+            {
+                navMeshAgent.enabled = true;
+                StopCoroutine("AvoidenceOrDie");
+            }
         }
     }
 }

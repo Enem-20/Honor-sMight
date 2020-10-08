@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NPriority;
+using NBattle;
 
 public class SpawnOrcs : MonoBehaviour
 {

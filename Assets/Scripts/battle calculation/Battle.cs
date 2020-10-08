@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battle : MonoBehaviour
+namespace NBattle
 {
-    public BattleDeterminate battleDeterminate;
-
-    public BattleContext context;
-
-    public delegate void SetUnit(BattleDeterminate battleDeterminate, CharParam charParam);
-
-    public SetUnit setUnit;
-
-    private void Awake()
+    public class Battle : MonoBehaviour
     {
-        context = new BattleContext();
-        setUnit = context.SetUnits;
+        public BattleDeterminate battleDeterminate;
+
+        public BattleContext context;
+
+        public delegate void SetUnit(BattleDeterminate battleDeterminate, CharParam charParam);
+
+        public SetUnit setUnit;
+
+        private void Awake()
+        {
+            context = new BattleContext();
+            setUnit = context.SetUnits;
+        }
     }
-}
-sealed public class BattleContext
-{
-    BattleDeterminate battleDeterminate;
-
-    public void SetUnits(BattleDeterminate battle, CharParam charParam)
+    sealed public class BattleContext
     {
-        this.battleDeterminate = battle;
-        this.battleDeterminate.charParam = charParam;
+        BattleDeterminate battleDeterminate;
+
+        public void SetUnits(BattleDeterminate battle, CharParam charParam)
+        {
+            this.battleDeterminate = battle;
+            this.battleDeterminate.charParam = charParam;
+        }
     }
 }
