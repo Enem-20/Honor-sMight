@@ -11,11 +11,15 @@ public class OrcProtectorScript : MonoBehaviour
     private Transform transform;
     private PriorityStategy priorityStrategy = new OrcProtectorPriority();
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         transform = GetComponent<Transform>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerScript>();
+    }
+    void Start()
+    {
+
     }
 
     // Update is called once per frame
